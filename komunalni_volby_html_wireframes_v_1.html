@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wireframes – Komunální web (SEN 21 / P5)</title>
+  <style>
+    :root{
+      --bg:#f6f7f8; --ink:#111; --muted:#777; --line:#dcdfe3; --accent:#0a66c2; --cta:#111;
+      --box:#fff; --chip:#eef2f6; --warn:#eae2; --good:#e7f7ee;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji"}
+    a{color:var(--accent); text-decoration:none}
+    .container{max-width:1120px; margin:0 auto; padding:24px}
+    header{background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50}
+    .topbar{display:flex; align-items:center; gap:16px; justify-content:space-between}
+    nav ul{display:flex; gap:16px; list-style:none; padding:0; margin:0}
+    nav a{display:block; padding:10px 12px; border:1px dashed var(--line); border-radius:8px; color:var(--ink)}
+    nav a[aria-current="page"]{outline:2px solid var(--accent)}
+    .util{display:flex; align-items:center; gap:12px}
+    .badge{background:var(--chip); border:1px dashed var(--line); padding:6px 8px; border-radius:999px; font-size:12px; color:#333}
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; padding:32px 0}
+    .hero .photo{background:#ddd; border:2px dashed #aaa; min-height:280px; border-radius:12px}
+    .claim{font-size:32px; font-weight:800; margin:0 0 8px}
+    .sub{color:var(--muted)}
+    .cta{display:inline-block; padding:12px 16px; border-radius:10px; border:2px solid #000; background:#fff}
+    .cta.primary{background:var(--ink); color:#fff; border-color:var(--ink)}
+    .grid{display:grid; gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .card{background:#fff; border:1px dashed var(--line); padding:16px; border-radius:12px}
+    .h{font-weight:700; margin:0 0 8px}
+    .muted{color:var(--muted)}
+    .list{margin:0; padding-left:18px}
+    .kpi{display:flex; gap:16px; align-items:center}
+    .kpi > div{background:#fff; border:1px dashed var(--line); padding:12px 16px; border-radius:10px}
+    .sticky-sign{position:sticky; bottom:12px; background:#fff; border:2px dashed var(--line); padding:10px; border-radius:12px; display:flex; gap:8px}
+    .input{padding:10px 12px; border:1px solid var(--line); border-radius:8px; width:100%}
+    .map{background:#eaeaea; border:2px dashed #bbb; height:280px; border-radius:12px}
+    footer{margin-top:48px; background:#fff; border-top:1px solid var(--line)}
+    .cols{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:24px}
+    .legal{font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:12px; margin-top:12px}
+
+    /* Routing (hash-based for preview) */
+    .route{display:none}
+    .route.active{display:block}
+    .pill{display:inline-block; padding:4px 8px; border:1px dashed var(--line); border-radius:999px; font-size:12px}
+    .avatar{width:100%; aspect-ratio:1/1; background:#ddd; border:2px dashed #aaa; border-radius:12px}
+    .mini{font-size:13px}
+    .table{width:100%; border-collapse:collapse}
+    .table td, .table th{border:1px dashed var(--line); padding:8px; text-align:left}
+    .section-title{margin:32px 0 8px; font-weight:800; font-size:22px}
+    .note{font-size:12px; color:#555}
+    .seg{display:flex; gap:8px; flex-wrap:wrap}
+    .seg label{border:1px dashed var(--line); padding:6px 8px; border-radius:8px}
+    .hidden-mobile{display:block}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:1fr}
+      .grid.cols-2{grid-template-columns:1fr}
+      .cols{grid-template-columns:1fr}
+      .hidden-mobile{display:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER / PRIMARY NAV -->
+  <header>
+    <div class="container topbar">
+      <div style="display:flex; align-items:center; gap:12px">
+        <div style="width:44px; height:44px; border-radius:8px; background:#eee; border:2px dashed #bbb"></div>
+        <strong>SEN 21 – Praha 5</strong>
+        <span class="badge hidden-mobile">Wireframe</span>
+      </div>
+      <nav aria-label="Primární navigace">
+        <ul>
+          <li><a href="#home" data-route-link>Domů</a></li>
+          <li><a href="#program" data-route-link>Program</a></li>
+          <li><a href="#kandidati" data-route-link>Kandidáti</a></li>
+          <li><a href="#lokality" data-route-link>Podle čtvrtí</a></li>
+          <li><a href="#zapojse" data-route-link>Zapoj se</a></li>
+        </ul>
+      </nav>
+      <div class="util">
+        <a href="#noviny" class="mini" data-route-link>Noviny & Tiskovky</a>
+        <a href="#akce" class="mini" data-route-link>Akce</a>
+        <a href="#kontakt" class="mini" data-route-link>Kontakt</a>
+        <span class="mini" aria-label="Sociální sítě">SoMe: ◯ ◯ ◯</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ROUTE: HOME -->
+    <section id="home" class="route active" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="photo" aria-hidden="true"><!-- HERO FOTO (Webflow: Image field) --></div>
+        <div>
+          <h1 id="home-title" class="claim">Vyvětráme radnici Prahy 5</h1>
+          <p class="sub">Krátké vysvětlení (1–2 věty), proč kandidujeme a co se změní.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 20px">
+            <a class="cta primary" href="#signup" data-goto="zapojse">Chci novinky</a>
+            <a class="cta" href="#program" data-route-link>Proč nás volit (Program)</a>
+          </div>
+          <div class="kpi">
+            <div>
+              <div class="muted mini">Důvěra ve volbách minule</div>
+              <strong>11 %</strong>
+            </div>
+            <div>
+              <div class="muted mini">Počet aktivních dobrovolníků</div>
+              <strong>120+</strong>
+            </div>
+            <div>
+              <div class="muted mini">Zveřejněných opatření</div>
+              <strong>60+</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid cols-3">
+        <div class="card">
+          <h3 class="h">Kdo jsme</h3>
+          <p class="muted mini">2–3 odstavce. Shrnutí: proč kandidujeme, co jsme dokázali, co chceme změnit.</p>
+          <a class="cta" href="#kandidati" data-route-link>Seznam kandidátů</a>
+        </div>
+        <div class="card">
+          <h3 class="h">Program – 8 oblastí</h3>
+          <ul class="list mini">
+            <li>Územní rozvoj</li>
+            <li>Školství & sport</li>
+            <li>Veřejný prostor</li>
+            <li>Senioři & sociální péče</li>
+          </ul>
+          <a class="cta" href="#program" data-route-link>Přečíst program</a>
+        </div>
+        <div class="card">
+          <h3 class="h">Podle čtvrtí</h3>
+          <p class="muted mini">Smíchov, Košíře, Jinonice, Radlice, Barrandov, Hlubočepy, Motol</p>
+          <a class="cta" href="#lokality" data-route-link>Najdi svou čtvrť</a>
+        </div>
+      </div>
+
+      <div class="section-title">Nadcházející akce</div>
+      <div class="grid cols-3">
+        <div class="card"><strong>Stánek na Andělu</strong><div class="mini muted">Út 16:00 • Nám. 14. října</div><a class="cta" href="#akce" data-route-link>Přijdu</a></div>
+        <div class="card"><strong>Barrandov – setkání s občany</strong><div class="mini muted">Čt 18:00 • Školní jídelna</div><a class="cta" href="#akce" data-route-link>Přijdu</a></div>
+        <div class="card"><strong>Úklid Košíř</strong><div class="mini muted">So 9:00 • Klamovka</div><a class="cta" href="#akce" data-route-link>Přijdu</a></div>
+      </div>
+
+      <div class="section-title">Noviny & Tiskovky</div>
+      <div class="grid cols-3">
+        <div class="card"><div style="height:120px; background:#eee; border:1px dashed #bbb; border-radius:8px"></div><p class="mini"><strong>Volební noviny – září</strong></p><a class="cta" href="#noviny" data-route-link>Stáhnout PDF</a></div>
+        <div class="card"><div style="height:120px; background:#eee; border:1px dashed #bbb; border-radius:8px"></div><p class="mini"><strong>TZ: Otevřená radnice</strong></p><a class="cta" href="#noviny" data-route-link>Stáhnout PDF</a></div>
+        <div class="card"><div style="height:120px; background:#eee; border:1px dashed #bbb; border-radius:8px"></div><p class="mini"><strong>Analýza dopravy</strong></p><a class="cta" href="#noviny" data-route-link>Stáhnout PDF</a></div>
+      </div>
+
+      <div class="sticky-sign" role="region" aria-label="Rychlý odběr novinek">
+        <input class="input" type="email" placeholder="Tvůj e‑mail" aria-label="E‑mail">
+        <button class="cta primary">Chci novinky</button>
+      </div>
+    </section>
+
+    <!-- ROUTE: PROGRAM (PŘEHLED) -->
+    <section id="program" class="route" aria-labelledby="program-title">
+      <h2 id="program-title" class="section-title">Program – 8 oblastí</h2>
+      <p class="muted mini">Krátké shrnutí a jak se v programu orientovat. Filtry podle tématu / čtvrti.</p>
+      <div class="seg" role="group" aria-label="Filtry">
+        <label><input type="checkbox"> Územní rozvoj</label>
+        <label><input type="checkbox"> Školství</label>
+        <label><input type="checkbox"> Veřejný prostor</label>
+        <label><input type="checkbox"> Sociální péče</label>
+        <label><input type="checkbox"> Bezpečnost</label>
+        <label><input type="checkbox"> Doprava</label>
+        <label><input type="checkbox"> Investice</label>
+        <label><input type="checkbox"> Otevřená radnice</label>
+      </div>
+      <div class="grid cols-3" style="margin-top:16px">
+        <!-- KARTA OBLASTI (CMS: Program Areas) -->
+        <article class="card">
+          <h3 class="h">Územní rozvoj a výstavba</h3>
+          <p class="mini muted">„Divoký západ developerů na Pětce.“ Jasná pravidla, veřejná vybavenost, včasný dialog.</p>
+          <a class="cta" href="#program-uzemni">Detail oblasti</a>
+        </article>
+        <article class="card">
+          <h3 class="h">Školství, sport a volný čas</h3>
+          <p class="mini muted">Kapacity školek a škol, sportoviště, kvalitní zázemí.</p>
+          <a class="cta" href="#program-skolstvi">Detail oblasti</a>
+        </article>
+        <article class="card">
+          <h3 class="h">Veřejný prostor</h3>
+          <p class="mini muted">Uklizená Pětka: soutěžit 3 oblasti zvlášť, kvalita díky konkurenci.</p>
+          <a class="cta" href="#program-verejny">Detail oblasti</a>
+        </article>
+        <article class="card">
+          <h3 class="h">Senioři a sociální péče</h3>
+          <p class="mini muted">Dostupné služby, pečovatelská síť, důstojný život doma.</p>
+          <a class="cta" href="#program-seniori">Detail oblasti</a>
+        </article>
+        <article class="card">
+          <h3 class="h">Otevřená radnice</h3>
+          <p class="mini muted">Pro lidi, ne pro funkce. Ombudsman zpět.</p>
+          <a class="cta" href="#program-otevrena">Detail oblasti</a>
+        </article>
+        <article class="card">
+          <h3 class="h">Investice & budoucnost</h3>
+          <p class="mini muted">Dlouhodobá vize, moderní služby, promyšlené finance.</p>
+          <a class="cta" href="#program-investice">Detail oblasti</a>
+        </article>
+        <article class="card">
+          <h3 class="h">Bezpečnost</h3>
+          <p class="mini muted">Bezpečí v parcích, na Andělu i Barrandově; spolupráce s MHMP.</p>
+          <a class="cta" href="#program-bezpecnost">Detail oblasti</a>
+        </article>
+        <article class="card">
+          <h3 class="h">Doprava</h3>
+          <p class="mini muted">Plynulost, parkování, pěší bezpečnost; tranzit není přes P5.</p>
+          <a class="cta" href="#program-doprava">Detail oblasti</a>
+        </article>
+      </div>
+
+      <div class="section-title">Rychlý odběr novinek</div>
+      <div class="seg">
+        <input class="input" placeholder="E‑mail">
+        <select class="input"><option>Má čtvrť (volitelné)</option><option>Smíchov</option><option>Košíře</option><option>Jinonice</option><option>Radlice</option><option>Barrandov</option><option>Hlubočepy</option><option>Motol</option></select>
+        <button class="cta primary">Chci novinky</button>
+      </div>
+    </section>
+
+    <!-- ROUTE: DETAIL OBLASTI (příklad: Územní rozvoj) -->
+    <section id="program-uzemni" class="route" aria-labelledby="uzemni-title">
+      <h2 id="uzemni-title" class="section-title">Územní rozvoj a výstavba</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <p class="mini"><strong>Co chceme změnit:</strong> pravidla pro developery, veřejná vybavenost, včasný dialog (ne až soudy).</p>
+          <ul class="list mini">
+            <li>Standardy veřejné vybavenosti (školy, školky, sportoviště) jako podmínka projektu.</li>
+            <li>Jednotná koncepce pro jednotlivé rozvojové plochy (Smíchov, Barrandov, …).</li>
+            <li>Otevřená jednání s developery před povolováním.</li>
+            <li>Veřejné dohody (benefity pro čtvrť) → transparentně online.</li>
+            <li>Zapojení veřejnosti (participace) v rané fázi.</li>
+          </ul>
+        </div>
+        <aside class="card">
+          <div class="avatar" aria-hidden="true"></div>
+          <p class="mini">Citace: „Vždycky je lepší mluvit s developerem dřív…“ — <em>Václav Láska</em></p>
+          <a class="cta" href="#lokality" data-route-link>Podívej se, co děláme ve tvé čtvrti</a>
+          <div style="margin-top:8px"><a class="cta" href="#zapojse" data-route-link>Chci se zapojit</a></div>
+        </aside>
+      </div>
+      <div style="margin-top:16px"><a class="mini" href="#program" data-route-link>← Zpět na přehled programu</a></div>
+    </section>
+
+    <!-- ROUTE: KANDIDÁTI (přehled) -->
+    <section id="kandidati" class="route" aria-labelledby="kandidati-title">
+      <h2 id="kandidati-title" class="section-title">Kandidáti</h2>
+      <div class="grid cols-3">
+        <!-- Karta kandidáta (CMS: Candidates) -->
+        <article class="card">
+          <div class="avatar" aria-hidden="true"></div>
+          <h3 class="h">Monika Shaw Salajová</h3>
+          <p class="mini muted">Místostarostka 2022–2024, sociální oblast a sport. Bojuje za čestnou a laskavou politiku.</p>
+          <div class="seg"><span class="pill">Košíře</span><span class="pill">Sociální péče</span></div>
+          <div style="margin-top:8px; display:flex; gap:8px"><a class="cta" href="#kand-detail">Detail</a><a class="cta" href="#" aria-disabled="true">SoMe</a></div>
+        </article>
+        <article class="card">
+          <div class="avatar"></div>
+          <h3 class="h">Milan Vrkoč</h3>
+          <p class="mini muted">Veřejný prostor a čistota P5. Komunální vysavače, soutěžení úklidu, kontrolní dny.</p>
+          <div class="seg"><span class="pill">Barrandov</span><span class="pill">Veřejný prostor</span></div>
+          <div style="margin-top:8px; display:flex; gap:8px"><a class="cta" href="#kand-detail">Detail</a><a class="cta" href="#">SoMe</a></div>
+        </article>
+        <article class="card">
+          <div class="avatar"></div>
+          <h3 class="h">Václav Láska</h3>
+          <p class="mini muted">Senátor, územní rozvoj. Dialog s developery včas, ne až po sporech.</p>
+          <div class="seg"><span class="pill">Smíchov</span><span class="pill">Územní rozvoj</span></div>
+          <div style="margin-top:8px; display:flex; gap:8px"><a class="cta" href="#kand-detail">Detail</a><a class="cta" href="#">SoMe</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ROUTE: PODLE ČTVRTÍ (přehled) -->
+    <section id="lokality" class="route" aria-labelledby="lokality-title">
+      <h2 id="lokality-title" class="section-title">Podle čtvrtí</h2>
+      <div class="map" aria-hidden="true"><!-- interaktivní mapa (později) --></div>
+      <div class="grid cols-3" style="margin-top:16px">
+        <div class="card"><strong>Smíchov</strong><p class="mini muted">5–8 lokálních priorit</p><a class="cta" href="#lok-smichov">Detail</a></div>
+        <div class="card"><strong>Košíře</strong><p class="mini muted">5–8 lokálních priorit</p><a class="cta" href="#lok-kosire">Detail</a></div>
+        <div class="card"><strong>Jinonice</strong><p class="mini muted">5–8 lokálních priorit</p><a class="cta" href="#lok-jinonice">Detail</a></div>
+        <div class="card"><strong>Radlice</strong><p class="mini muted">5–8 lokálních priorit</p><a class="cta" href="#lok-radlice">Detail</a></div>
+        <div class="card"><strong>Barrandov</strong><p class="mini muted">5–8 lokálních priorit</p><a class="cta" href="#lok-barrandov">Detail</a></div>
+        <div class="card"><strong>Hlubočepy</strong><p class="mini muted">5–8 lokálních priorit</p><a class="cta" href="#lok-hlubocepy">Detail</a></div>
+        <div class="card"><strong>Motol</strong><p class="mini muted">5–8 lokálních priorit</p><a class="cta" href="#lok-motol">Detail</a></div>
+      </div>
+    </section>
+
+    <!-- ROUTE: DETAIL LOKALITY (příklad Smíchov) -->
+    <section id="lok-smichov" class="route" aria-labelledby="smichov-title">
+      <h2 id="smichov-title" class="section-title">Smíchov</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <ol class="mini">
+            <li>Nová školka v …</li>
+            <li>Bezpečnější přechody u …</li>
+            <li>Revize úklidu – smlouva a KPI</li>
+            <li>Parková úprava …</li>
+            <li>Kontrola hluku a noční dopravy v …</li>
+          </ol>
+          <a class="cta" href="#zapodnet">Nahlásit podnět</a>
+        </div>
+        <aside class="card">
+          <div class="avatar"></div>
+          <p class="mini">Zastupitel pro Smíchov: <strong>XYZ</strong></p>
+          <a class="cta" href="#kandidati" data-route-link>Relevantní kandidáti</a>
+          <div style="margin-top:8px"><a class="cta primary" href="#zapojse" data-route-link>Chci novinky ze Smíchova</a></div>
+        </aside>
+      </div>
+      <div style="margin-top:16px"><a class="mini" href="#lokality" data-route-link>← Zpět na všechny čtvrti</a></div>
+    </section>
+
+    <!-- ROUTE: ZAPOJ SE -->
+    <section id="zapojse" class="route" aria-labelledby="zapoj-title">
+      <h2 id="zapoj-title" class="section-title">Zapoj se</h2>
+      <div class="grid cols-3">
+        <div class="card" id="signup">
+          <h3 class="h">Chci novinky</h3>
+          <p class="mini muted">Krátký popis co posíláme a jak často.</p>
+          <input class="input" placeholder="E‑mail">
+          <select class="input" style="margin-top:8px"><option>Má čtvrť (volitelné)</option><option>Smíchov</option><option>Košíře</option><option>Jinonice</option><option>Radlice</option><option>Barrandov</option><option>Hlubočepy</option><option>Motol</option></select>
+          <label class="mini" style="display:block; margin-top:8px"><input type="checkbox"> Souhlas se zpracováním osobních údajů (GDPR).</label>
+          <button class="cta primary" style="margin-top:8px">Přihlásit se</button>
+        </div>
+        <div class="card">
+          <h3 class="h">Chci pomoci (dobrovolně)</h3>
+          <p class="mini muted">Zaškrtni, s čím můžeš pomoct.</p>
+          <label class="mini"><input type="checkbox"> Roznos letáků</label><br/>
+          <label class="mini"><input type="checkbox"> Stánek / mluvení s lidmi</label><br/>
+          <label class="mini"><input type="checkbox"> Fotky / video</label><br/>
+          <label class="mini"><input type="checkbox"> Správa SoMe</label><br/>
+          <input class="input" placeholder="E‑mail">
+          <button class="cta" style="margin-top:8px">Odeslat</button>
+        </div>
+        <div class="card">
+          <h3 class="h">Petice</h3>
+          <p class="mini muted">Text petice (stručně). Po vyplnění odešleme informaci a nabídneme sdílení.</p>
+          <input class="input" placeholder="Jméno">
+          <input class="input" placeholder="Příjmení" style="margin-top:6px">
+          <input class="input" placeholder="Město" style="margin-top:6px">
+          <input class="input" placeholder="E‑mail" style="margin-top:6px">
+          <textarea class="input" placeholder="Podepisuji, protože…" style="margin-top:6px; min-height:80px"></textarea>
+          <label class="mini" style="display:block; margin-top:8px"><input type="checkbox"> Souhlas se zpracováním osobních údajů (GDPR).</label>
+          <button class="cta primary" style="margin-top:8px">Podepsat petici</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTE: NOVINY & TISKOVKY -->
+    <section id="noviny" class="route" aria-labelledby="noviny-title">
+      <h2 id="noviny-title" class="section-title">Noviny & Tiskovky</h2>
+      <div class="grid cols-3">
+        <article class="card">
+          <div style="height:160px; background:#eee; border:1px dashed #bbb; border-radius:8px"></div>
+          <h3 class="h">Volební noviny (09/2025)</h3>
+          <p class="mini muted">Krátká anotace (2 věty).</p>
+          <a class="cta" href="#">Stáhnout PDF</a>
+        </article>
+        <article class="card">
+          <div style="height:160px; background:#eee; border:1px dashed #bbb; border-radius:8px"></div>
+          <h3 class="h">Tisková zpráva – Otevřená radnice</h3>
+          <p class="mini muted">Shrnutí pro média.</p>
+          <a class="cta" href="#">Stáhnout PDF</a>
+        </article>
+        <article class="card">
+          <div style="height:160px; background:#eee; border:1px dashed #bbb; border-radius:8px"></div>
+          <h3 class="h">Analytický dokument – Doprava</h3>
+          <p class="mini muted">Krátký popis.</p>
+          <a class="cta" href="#">Stáhnout PDF</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ROUTE: AKCE -->
+    <section id="akce" class="route" aria-labelledby="akce-title">
+      <h2 id="akce-title" class="section-title">Akce – Kde se potkáme</h2>
+      <div class="grid cols-3">
+        <article class="card">
+          <strong>Stánek Anděl</strong>
+          <div class="mini muted">Út 16:00 • Nám. 14. října</div>
+          <p class="mini">Přijď si popovídat, máme fotokoutek a mapu podnětů.</p>
+          <a class="cta" href="#">Přijdu</a>
+        </article>
+        <article class="card">
+          <strong>Barrandov • Beseda</strong>
+          <div class="mini muted">Čt 18:00 • Školní jídelna</div>
+          <p class="mini">Diskuse o bezpečnosti a MHD.</p>
+          <a class="cta" href="#">Přijdu</a>
+        </article>
+        <article class="card">
+          <strong>Úklid Košíř</strong>
+          <div class="mini muted">So 9:00 • Klamovka</div>
+          <p class="mini">S metlou a dobrou náladou.</p>
+          <a class="cta" href="#">Přijdu</a>
+        </article>
+      </div>
+      <div class="section-title">Galerie z akcí</div>
+      <div class="grid cols-3">
+        <div class="card" style="height:140px"></div>
+        <div class="card" style="height:140px"></div>
+        <div class="card" style="height:140px"></div>
+      </div>
+    </section>
+
+    <!-- ROUTE: KONTAKT -->
+    <section id="kontakt" class="route" aria-labelledby="kontakt-title">
+      <h2 id="kontakt-title" class="section-title">Kontakt</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <p class="mini"><strong>E‑mail:</strong> senpropetku@sen21.cz<br><strong>Telefon:</strong> 774 957 025</p>
+          <form>
+            <input class="input" placeholder="Vaše jméno">
+            <input class="input" placeholder="E‑mail" style="margin-top:6px">
+            <textarea class="input" placeholder="Zpráva" style="margin-top:6px; min-height:120px"></textarea>
+            <label class="mini" style="display:block; margin-top:8px"><input type="checkbox"> Souhlas se zpracováním osobních údajů (GDPR).</label>
+            <button class="cta" style="margin-top:8px">Poslat zprávu</button>
+          </form>
+        </div>
+        <aside class="card">
+          <p class="mini"><strong>Pro média:</strong> stručné podklady a odkazy na <a href="#noviny" data-route-link>Noviny & Tiskovky</a>.</p>
+          <p class="mini">SoMe: ◯ Facebook ◯ Instagram ◯ X</p>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="cols">
+        <div>
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px">
+            <div style="width:36px; height:36px; border-radius:8px; background:#eee; border:2px dashed #bbb"></div>
+            <strong>SEN 21 – Praha 5</strong>
+          </div>
+          <p class="mini">Jsme tým z kanceláře senátora Václava Lásky. Pracujeme pro čistou, bezpečnou a férovou Pětku.</p>
+          <p class="mini">Kontakt: <a href="mailto:senpropetku@sen21.cz">senpropetku@sen21.cz</a> • 774 957 025</p>
+          <p class="mini">SoMe: ◯ ◯ ◯</p>
+        </div>
+        <div>
+          <strong class="mini">Navigace</strong>
+          <ul class="mini list">
+            <li><a href="#program" data-route-link>Program</a></li>
+            <li><a href="#kandidati" data-route-link>Kandidáti</a></li>
+            <li><a href="#lokality" data-route-link>Podle čtvrtí</a></li>
+            <li><a href="#zapojse" data-route-link>Zapoj se</a></li>
+            <li><a href="#noviny" data-route-link>Noviny & Tiskovky</a></li>
+            <li><a href="#akce" data-route-link>Akce</a></li>
+            <li><a href="#kontakt" data-route-link>Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong class="mini">Právní</strong>
+          <ul class="mini list">
+            <li><a href="#">Zásady zpracování osobních údajů</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">GDPR u formulářů</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong class="mini">Newsletter</strong>
+          <input class="input" placeholder="E‑mail">
+          <button class="cta" style="margin-top:8px">Chci novinky</button>
+        </div>
+      </div>
+      <div class="legal mini">© 2025 SEN 21 – Praha 5. Wireframe (HTML). V reálné verzi budou nasazeny CMS kolekce Webflow (Kandidáti, Program, Lokality, Akce, Dokumenty, Petice).</div>
+    </div>
+  </footer>
+
+  <script>
+    // Jednoduché routování pro náhled wireframu
+    const routes = document.querySelectorAll('.route');
+    const links = document.querySelectorAll('[data-route-link]');
+    const setActive = id => {
+      routes.forEach(r => r.classList.toggle('active', '#'+r.id === id));
+      links.forEach(a => a.setAttribute('aria-current', a.getAttribute('href')===id ? 'page' : 'false'));
+      if(!document.querySelector(id)){
+        // fallback na home
+        document.querySelector('#home').classList.add('active');
+      }
+      window.scrollTo({top:0, behavior:'instant'});
+    };
+    window.addEventListener('hashchange', ()=> setActive(location.hash||'#home'));
+    document.querySelectorAll('[data-goto]')?.forEach(el=>{
+      el.addEventListener('click', e=>{
+        const to = el.getAttribute('data-goto');
+        if(to){ location.hash = '#'+to; }
+      })
+    });
+    setActive(location.hash||'#home');
+  </script>
+</body>
+</html>
